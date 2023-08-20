@@ -5,7 +5,8 @@
 
 class Client {
 public:
-    Client(string name);
+    explicit Client(string name);
+    string getName();
 
 private:
     const string name;

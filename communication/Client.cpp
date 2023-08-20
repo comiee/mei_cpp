@@ -1,4 +1,4 @@
-#include "../include/Client.h"
+#include "Client.h"
 
 
 Client::Client(string name) : name(name) {}

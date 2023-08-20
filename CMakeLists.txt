@@ -3,4 +3,18 @@ project(mei)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(mei main.cpp)
+
+include_directories(
+        demo
+        communication
+        communal
+)
+
+file(GLOB SOURCES
+        main.cpp
+        demo/*.cpp
+        communication/*.cpp
+        communal/*.cpp
+        )
+
+add_executable(${PROJECT_NAME} ${SOURCES})
