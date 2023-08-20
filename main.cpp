@@ -1,6 +1,7 @@
 #include <iostream>
+#include "Client.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    cout << Client("demo").getName() << endl;
     return 0;
 }

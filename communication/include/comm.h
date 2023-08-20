@@ -11,7 +11,7 @@ const string ENCODING="utf-8";
 
 const int RECONNECT_TIME = 3;
 
-void sendMsg(SOCKET socket, string msg);
+void sendMsg(SOCKET socket, const string& msg);
 
 string recvMsg(SOCKET socket);
 

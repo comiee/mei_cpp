@@ -1,7 +1,11 @@
-project(communication)
+file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp)
+add_library(communication STATIC ${srcs})
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+target_include_directories(communication
+PUBLIC
+    include
+PRIVATE
+    src
+)
 
-target_link_directories(PROJECT_NAME PUBLIC include)
-
-add_library(PROJECT_NAME STATIC SOURCES)
+target_link_libraries(communication communal)
