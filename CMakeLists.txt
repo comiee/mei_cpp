@@ -11,3 +11,6 @@ add_subdirectory(demo)
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} communication) # TODO 后续换成demo
+
+# test
+add_subdirectory(test)
