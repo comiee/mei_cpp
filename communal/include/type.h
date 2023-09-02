@@ -5,10 +5,10 @@
 
 using string = std::string;
 
-using uchar = unsigned char;
-using ushort = unsigned short;
-using uint = unsigned int;
-using ulong = unsigned long;
-using ullong = unsigned long long;
+using uchar [[maybe_unused]] = unsigned char;
+using ushort [[maybe_unused]] = unsigned short;
+using uint [[maybe_unused]] = unsigned int;
+using ulong [[maybe_unused]] = unsigned long;
+using ullong [[maybe_unused]] = unsigned long long;
 
 #endif //MEI_TYPE_H

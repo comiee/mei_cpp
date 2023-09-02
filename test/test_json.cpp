@@ -1,10 +1,10 @@
-#include "json/json.h"
+#include "json/writer.h"
 #include <iostream>
 
 using namespace std;
 
-void test_json_main() {
+void testJsonMain() {
     Json::Value s = "hi";
-    cout << s.toStyledString() << endl;
+    cout << Json::writeString(Json::StreamWriterBuilder(),s) << endl;
 }
 

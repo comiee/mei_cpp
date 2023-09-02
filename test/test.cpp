@@ -1,13 +1,19 @@
 #include <iostream>
 #include "Client.h"
+#include "log.h"
 
 using namespace std;
 
-void test_json_main();
+void testJsonMain();
+void testToolsMain();
 
 int main() {
-    cout << Client("demo").getName() << endl;
+    Logger logger("test", Logger::DEBUG);
+    logger.debug(Client("demo").getName());
 
-    test_json_main();
+    testJsonMain();
+    testToolsMain();
+
+    logger.info("test end");
     return 0;
 }
