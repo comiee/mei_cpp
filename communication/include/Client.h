@@ -10,8 +10,8 @@ public:
 
 private:
     const string name;
-    SOCKET sender;
-    SOCKET receiver;
+    SOCKET sender = INVALID_SOCKET;
+    SOCKET receiver = INVALID_SOCKET;
 };
 
 

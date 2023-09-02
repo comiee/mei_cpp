@@ -13,7 +13,7 @@ void sendMsg(SOCKET socket, const string &msg) {
 string recvMsg(SOCKET socket) {
     char len_buf[6] = {0};
     recv(socket, len_buf, 5, 0);
-    stringstream ss(len_buf);
+    std::stringstream ss(len_buf);
     int length;
     ss >> length;
     char *msg_buf = new char[length];

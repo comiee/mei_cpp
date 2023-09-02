@@ -1,9 +1,8 @@
 #ifndef MEI_COMM_H
 #define MEI_COMM_H
 
-#include <string>
 #include <winsock.h>
-using namespace std;
+#include "type.h"
 
 const string HOST="127.0.0.1";
 const int PORT=9999;

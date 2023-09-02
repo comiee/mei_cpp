@@ -1,8 +1,12 @@
+#include "log.h"
 #include "Client.h"
+#include <utility>
 
+Client::Client(string name) :
+        name(std::move(name)) {
 
-Client::Client(string name) : name(name) {}
+}
 
-string Client::getName(){
+string Client::getName() {
     return name;
 }
