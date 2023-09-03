@@ -47,7 +47,7 @@ string levelToString(Logger::Level level) {
     }
 }
 
-void Logger::_log(Level level, const char *str) {
+void Logger::doLog(Level level, const char *str) {
     if (level < console_level && level < file_level) {
         return;
     }
