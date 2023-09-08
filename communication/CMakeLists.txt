@@ -8,4 +8,4 @@ PRIVATE
     src
 )
 
-target_link_libraries(communication communal)
+target_link_libraries(communication communal jsoncpp)

@@ -23,6 +23,9 @@ public: \
     explicit __name__(const char *msg) : CustomException(msg) {} \
 };
 
+// 构造/解析Json时发生的错误
 DEFINE_EXCEPTION(JsonException)
+// 构造/解析消息时发生的错误
+DEFINE_EXCEPTION(MessageException)
 
 #endif //MEI_CUSTOM_EXCEPTION_H
