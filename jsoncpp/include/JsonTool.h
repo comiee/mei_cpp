@@ -26,7 +26,7 @@ public:
 
 
 private:
-    // 为保持简洁，使用的模板的方法实现放在这里，public里只透传
+    // 为保持简洁，使用模板的方法实现放在这里，public里只透传
 
     template<typename K, typename V, typename...Args>
     static Json::Value _createObject(const K &k, const V &v, Args...args) {

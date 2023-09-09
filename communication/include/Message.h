@@ -21,5 +21,6 @@ private:
 };
 
 #define MESSAGE_INSTANCE(__cls__, __cmd__) \
-INSTANCE(__cls__) \
+INSTANCE(__cls__)                          \
+private:                                   \
 __cls__() : Message(__cmd__) {}
