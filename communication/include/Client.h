@@ -1,7 +1,8 @@
 #ifndef MEI_CLIENT_H
 #define MEI_CLIENT_H
 
-#include "comm.h"
+#include "type.h"
+#include <winsock.h>
 
 class Client {
 public:

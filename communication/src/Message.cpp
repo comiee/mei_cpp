@@ -1,6 +1,7 @@
 #include "Message.h"
+#include <map>
 
-std::map<string, Receiver *> Receiver::receiver_map;
+std::map<string, Receiver *> receiver_map;
 
 Json::Value Receiver::parse(const string &message) {
     Json::Value object = JsonTool::parse(message);

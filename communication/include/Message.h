@@ -4,7 +4,6 @@
 #include "type.h"
 #include "jsonTool.h"
 #include "CustomException.h"
-#include <map>
 
 class Receiver {
 public:
@@ -14,9 +13,6 @@ public:
 
 protected:
     static void registerMessage(const string &cmd, Receiver *receiver);
-
-private:
-    static std::map<string, Receiver *> receiver_map;
 };
 
 template<typename T>
