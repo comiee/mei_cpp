@@ -1,5 +1,4 @@
-#ifndef MEI_JSON_TOOL_H
-#define MEI_JSON_TOOL_H
+#pragma once
 
 #include "type.h"
 #include "json/json.h"
@@ -82,6 +81,3 @@ private:
         return root;
     }
 };
-
-
-#endif //MEI_JSON_TOOL_H

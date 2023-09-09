@@ -1,5 +1,4 @@
-#ifndef MEI_TOOLS_H
-#define MEI_TOOLS_H
+#pragma once
 
 #include "type.h"
 #include "sstream"
@@ -19,5 +18,3 @@ string stringJoin(const string &split, T obj, Args...args) {
     }
     return ss.str();
 }
-
-#endif //MEI_TOOLS_H

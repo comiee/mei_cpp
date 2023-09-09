@@ -1,5 +1,4 @@
-#ifndef MEI_LOG_H
-#define MEI_LOG_H
+#pragma once
 
 #include "type.h"
 
@@ -68,5 +67,3 @@ private:
         doLog(level, buf);
     }
 };
-
-#endif //MEI_LOG_H

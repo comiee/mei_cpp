@@ -1,5 +1,4 @@
-#ifndef MEI_RECEIVER_H
-#define MEI_RECEIVER_H
+#pragma once
 
 #include "type.h"
 #include "jsonTool.h"
@@ -13,5 +12,3 @@ public:
 protected:
     static void registerMessage(const string &cmd, Receiver *receiver);
 };
-
-#endif //MEI_RECEIVER_H

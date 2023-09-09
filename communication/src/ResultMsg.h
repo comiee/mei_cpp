@@ -1,5 +1,4 @@
-#ifndef MEI_RESULTMSG_H
-#define MEI_RESULTMSG_H
+#pragma once
 
 #include "Message.h"
 
@@ -12,6 +11,3 @@ public:
 private:
     MESSAGE_INSTANCE(ResultMsg, "result")
 };
-
-
-#endif //MEI_RESULTMSG_H

@@ -1,5 +1,4 @@
-#ifndef MEI_REGISTERMSG_H
-#define MEI_REGISTERMSG_H
+#pragma once
 
 #include "Message.h"
 
@@ -10,6 +9,3 @@ public:
 private:
     MESSAGE_INSTANCE(RegisterMsg, "register")
 };
-
-
-#endif //MEI_REGISTERMSG_H

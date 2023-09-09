@@ -1,5 +1,4 @@
-#ifndef MEI_MESSAGE_H
-#define MEI_MESSAGE_H
+#pragma once
 
 #include "Receiver.h"
 #include "simple.h"
@@ -24,5 +23,3 @@ private:
 #define MESSAGE_INSTANCE(__cls__, __cmd__) \
 INSTANCE(__cls__) \
 __cls__() : Message(__cmd__) {}
-
-#endif //MEI_MESSAGE_H

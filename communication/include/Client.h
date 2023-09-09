@@ -1,5 +1,4 @@
-#ifndef MEI_CLIENT_H
-#define MEI_CLIENT_H
+#pragma once
 
 #include "type.h"
 #include <winsock.h>
@@ -14,6 +13,3 @@ private:
     SOCKET sender = INVALID_SOCKET;
     SOCKET receiver = INVALID_SOCKET;
 };
-
-
-#endif //MEI_CLIENT_H
