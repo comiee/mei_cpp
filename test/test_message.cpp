@@ -1,11 +1,10 @@
 #include "Message.h"
+#include "simple.h"
 #include <iostream>
 
 using namespace std;
 
-class TestMsg : public Message<TestMsg> {
-    friend class Message<TestMsg>;
-
+class TestMsg : public Message{
 public :
     static string build(const string &text) {
         return getInstance()->buildMsg(JsonTool::createObject(
@@ -19,7 +18,9 @@ public :
     }
 
 private:
-    TestMsg() : Message<TestMsg>("test") {}
+    INSTANCE(TestMsg)
+
+    TestMsg() : Message("test") {}
 };
 
 void testMessageMain() {

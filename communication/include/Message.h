@@ -1,51 +1,28 @@
 #ifndef MEI_MESSAGE_H
 #define MEI_MESSAGE_H
 
-#include "type.h"
-#include "jsonTool.h"
-#include "CustomException.h"
+#include "Receiver.h"
+#include "simple.h"
 
-class Receiver {
-public:
-    virtual Json::Value receive(const Json::Value &value) = 0;
-
-    static Json::Value parse(const string &message);
-
-protected:
-    static void registerMessage(const string &cmd, Receiver *receiver);
-};
-
-template<typename T>
 class Message : public Receiver {
 public:
-    Json::Value receive(const Json::Value &value) override { return Json::nullValue; }
-
-    inline static T *getInstance() {
-        static T instance;
-        return &instance;
-    }
+    Json::Value receive(const Json::Value &value) override;
 
     Message(const Message &other) = delete;
 
     const Message &operator=(const Message &other) = delete;
 
 protected:
-    explicit Message(const string &cmd) : cmd(cmd) { registerMessage(cmd, this); }
+    explicit Message(const string &cmd);
 
-    string buildMsg(const Json::Value &value) { return _buildMsg(value); };
+    string buildMsg(const Json::Value &value);
 
 private:
     const string cmd;
-
-private:
-    string _buildMsg(const Json::Value &value) {
-        Json::Value object = JsonTool::createObject(
-                "cmd", cmd,
-                "value", value
-        );
-        return JsonTool::dump(object);
-    }
 };
 
+#define MESSAGE_INSTANCE(__cls__, __cmd__) \
+INSTANCE(__cls__) \
+__cls__() : Message(__cmd__) {}
 
 #endif //MEI_MESSAGE_H
