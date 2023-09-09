@@ -1,5 +1,5 @@
 #include "Message.h"
-#include "simple.h"
+#include "JsonTool.h"
 #include <iostream>
 
 using namespace std;
@@ -18,9 +18,7 @@ public :
     }
 
 private:
-    INSTANCE(TestMsg)
-
-    TestMsg() : Message("test") {}
+    MESSAGE_INSTANCE(TestMsg, "test")
 };
 
 void testMessageMain() {

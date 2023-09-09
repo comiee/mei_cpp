@@ -1,5 +1,6 @@
 #include "Receiver.h"
 #include "CustomException.h"
+#include "JsonTool.h"
 
 std::map<string, Receiver *> receiver_map;
 

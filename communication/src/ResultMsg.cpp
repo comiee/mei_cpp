@@ -1,6 +1,6 @@
 #include "ResultMsg.h"
 #include "CustomException.h"
-
+#include "JsonTool.h"
 
 string ResultMsg::build(const Json::Value &value) {
     return getInstance()->buildMsg(value);

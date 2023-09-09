@@ -1,4 +1,5 @@
 #include "Message.h"
+#include "JsonTool.h"
 
 Json::Value Message::receive(const Json::Value &value)  {
     return Json::nullValue;
@@ -14,4 +15,4 @@ string Message::buildMsg(const Json::Value &value) {
             "value", value
     );
     return JsonTool::dump(object);
-};
+}
