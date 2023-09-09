@@ -21,6 +21,7 @@ private:
 };
 
 #define MESSAGE_INSTANCE(__cls__, __cmd__) \
+[[gnu::constructor]]                       \
 INSTANCE(__cls__)                          \
 private:                                   \
 __cls__() : Message(__cmd__) {}

@@ -2,7 +2,10 @@
 #include "CustomException.h"
 #include "JsonTool.h"
 
-std::map<string, Receiver *> receiver_map;
+std::map<string, Receiver *> &getReceiverMap(){
+    static std::map<string, Receiver *> receiver_map;
+    return receiver_map;
+}
 
 Json::Value Receiver::parse(const string &message) {
     Json::Value object = JsonTool::parse(message);
@@ -15,7 +18,7 @@ Json::Value Receiver::parse(const string &message) {
     string cmd = object["cmd"].asString();
     Json::Value value = object["value"];
 
-    for (const auto &[k, v]: receiver_map) {
+    for (const auto &[k, v]: getReceiverMap()) {
         if (k == cmd) {
             return v->receive(value);
         }
@@ -24,5 +27,5 @@ Json::Value Receiver::parse(const string &message) {
 }
 
 void Receiver::registerReceiver(const string &cmd, Receiver *receiver) {
-    receiver_map[cmd] = receiver;
+    getReceiverMap()[cmd] = receiver;
 }
