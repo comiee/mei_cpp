@@ -10,11 +10,11 @@ inline string logPath(const string &file_name) {
 }
 
 Logger::Logger(const string &name, Level level) :
-        Logger(name, level, name, level) {
+        Logger(name, level, name + ".txt", level) {
 }
 
 Logger::Logger(const string &name, Level console_level, Level file_level) :
-        Logger(name, console_level, name, file_level) {
+        Logger(name, console_level, name + ".txt", file_level) {
 }
 
 Logger::Logger(const string &name, Level console_level, const string &file_name, Level file_level) :

@@ -9,7 +9,7 @@ public:
 
     explicit CustomException(const char *msg) : msg(msg) {}
 
-    inline string getMsg() { return msg; }
+    inline const char *getMsg() { return msg.c_str(); }
 
 private:
     string msg;
@@ -26,3 +26,5 @@ public: \
 DEFINE_EXCEPTION(JsonException)
 // 构造/解析消息时发生的错误
 DEFINE_EXCEPTION(MessageException)
+// 使用socket通信时发生的错误
+DEFINE_EXCEPTION(SocketException)

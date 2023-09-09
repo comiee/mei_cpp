@@ -1,5 +1,8 @@
 #pragma once
 
-class DemoClient {
+#include "Client.h"
 
+class DemoClient : public Client {
+public:
+    DemoClient();
 };

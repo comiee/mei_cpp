@@ -10,5 +10,5 @@ public:
     static Json::Value parse(const string &message);
 
 protected:
-    static void registerMessage(const string &cmd, Receiver *receiver);
+    static void registerReceiver(const string &cmd, Receiver *receiver);
 };

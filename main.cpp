@@ -1,9 +1,18 @@
+#include "DemoClient.h"
+#include "DebugMsg.h"
 #include <iostream>
-#include "Client.h"
-
-using namespace std;
+#include <thread>
 
 int main() {
-    cout << Client("demo").getName() << endl;
+    DemoClient client;
+    std::thread listener([&client]() { client.listenServer(); });
+    string s;
+    do {
+        std::cin >> s;
+        Json::Value ret = client.send(DebugMsg::build(s));
+        std::cout << ret.asString() << std::endl;
+    } while (!s.empty());
+    client.close();
+    listener.join();
     return 0;
 }

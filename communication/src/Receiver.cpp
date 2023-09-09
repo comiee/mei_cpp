@@ -23,6 +23,6 @@ Json::Value Receiver::parse(const string &message) {
     throw MessageException("解析消息出错，未注册的命令：" + message);
 }
 
-void Receiver::registerMessage(const string &cmd, Receiver *receiver) {
+void Receiver::registerReceiver(const string &cmd, Receiver *receiver) {
     receiver_map[cmd] = receiver;
 }

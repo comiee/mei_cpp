@@ -6,7 +6,7 @@ Json::Value Message::receive(const Json::Value &value)  {
 }
 
 Message::Message(const string &cmd) : cmd(cmd) {
-    registerMessage(cmd, this);
+    registerReceiver(cmd, this);
 }
 
 string Message::buildMsg(const Json::Value &value) {

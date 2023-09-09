@@ -3,11 +3,11 @@
 #include "type.h"
 #include <winsock.h>
 
-const string HOST="127.0.0.1";
-const int PORT=9999;
-const string ENCODING="utf-8";
+static const char *HOST="127.0.0.1";
+static const ushort PORT=9999;
 
-const int RECONNECT_TIME = 3;
+static const uint RECONNECT_TIME = 3;
+static const uint RECONNECT_COUNT = 50;
 
 void sendMsg(SOCKET socket, const string& msg);
 
