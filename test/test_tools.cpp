@@ -4,7 +4,11 @@
 using namespace std;
 
 void testJoin() {
-    cout << stringJoin(",", 1, "abc") << endl;
+    uchar a = 'x';
+    ulong b = 1;
+    ullong c = 2;
+    llong d = 3;
+    cout << stringJoin(",", a, b, c, d, "abc") << endl;
 }
 
 void testToolsMain() {

@@ -15,12 +15,14 @@ private:
     string msg;
 };
 
+// NOLINTBEGIN
 #define DEFINE_EXCEPTION(__name__) \
 class __name__ : public CustomException { \
 public: \
     explicit __name__(string msg) : CustomException(std::move(msg)) {} \
     explicit __name__(const char *msg) : CustomException(msg) {} \
 };
+// NOLINTEND
 
 // 构造/解析Json时发生的错误
 DEFINE_EXCEPTION(JsonException)

@@ -1,5 +1,4 @@
 #include "log.h"
-#include "ignore_check.h"
 #include "tools.h"
 #include <iostream>
 #include <fstream>
@@ -19,8 +18,12 @@ Logger::Logger(const string &name, Level console_level, Level file_level) :
 
 Logger::Logger(const string &name, Level console_level, const string &file_name, Level file_level) :
         name(name), console_level(console_level), file_name(file_name), file_level(file_level) {
-    IGNORE_MOVE_CHECK(name)
-    IGNORE_MOVE_CHECK(file_name)
+    if (name.empty() || file_name.empty()) { // 屏蔽使用std::move的检查，解决clion识别不到doLog调用点报警告的问题
+        this->name = "error";
+        this->file_name = "error.txt";
+        doLog(ERROR, "name为空");
+        doLog(WARNING, "name为空");
+    }
 }
 
 string getTimeString() {
