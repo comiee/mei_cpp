@@ -60,10 +60,7 @@ private:
     template<typename ...Args>
     void _log(Level level, const string &format, Args...args) {
         char buf[1000];
-        int ret = sprintf_s(buf, format.c_str(), args...);
-        if (ret < 0) {
-            error("该条日志过长，已被截断");
-        }
+        snprintf(buf, sizeof(buf) / sizeof(char), format.c_str(), args...);
         doLog(level, buf);
     }
 };

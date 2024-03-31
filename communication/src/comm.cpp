@@ -1,32 +1,35 @@
 #include "comm.h"
 #include "CustomException.h"
-#include <sstream>
+#include "tools.h"
+#include <memory>
 
-void sendMsg(SOCKET socket, const string &msg) {
-    int length = static_cast<int>(msg.length());
-    char len_buf[6] = {0};
-    sprintf(len_buf, "%05d", length);
-    if (send(socket, len_buf, 5, 0) == SOCKET_ERROR) {
-        throw SocketException("发送消息长度失败");
-    }
-    if (send(socket, msg.c_str(), length, 0) == SOCKET_ERROR) {
-        throw SocketException("发送消息内容失败");
+
+void sendEx(SOCKET socket, const string &s) {
+    int len = static_cast<int>(s.length());
+    if (send(socket, s.c_str(), len, 0) == SOCKET_ERROR) {
+        throw SocketException("发送失败：" + s);
     }
 }
 
+string recvEx(SOCKET socket, int len) {
+    std::unique_ptr<char> buf(new char[len + 1]{0});
+    if (recv(socket, buf.get(), len, 0) == SOCKET_ERROR) {
+        throw SocketException("接收失败：" + toString(len));
+    }
+    return buf.get();
+}
+
+void sendMsg(SOCKET socket, const string &msg) {
+    string len = toString(msg.length());
+    int n = static_cast<int>(len.length());
+    sendEx(socket, stringFormat("%05d", n));
+    sendEx(socket, len);
+    sendEx(socket, msg);
+}
+
 string recvMsg(SOCKET socket) {
-    char len_buf[6] = {0};
-    if (recv(socket, len_buf, 5, 0) == SOCKET_ERROR) {
-        throw SocketException("接收消息长度失败");
-    }
-    std::stringstream ss(len_buf);
-    int length;
-    ss >> length;
-    char *msg_buf = new char[length + 1]{0};
-    if (recv(socket, msg_buf, length, 0) == SOCKET_ERROR) {
-        throw SocketException("接收消息内容失败");
-    }
-    string res(msg_buf);
-    delete[] msg_buf;
+    int n = stringTo<int>(recvEx(socket, 5));
+    int len = stringTo<int>(recvEx(socket, n));
+    string res= recvEx(socket, len);
     return res;
 }

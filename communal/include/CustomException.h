@@ -30,3 +30,5 @@ DEFINE_EXCEPTION(JsonException)
 DEFINE_EXCEPTION(MessageException)
 // 使用socket通信时发生的错误
 DEFINE_EXCEPTION(SocketException)
+// 缓存区不足
+DEFINE_EXCEPTION(BufferNotEnoughException)
