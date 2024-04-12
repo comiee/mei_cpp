@@ -5,7 +5,7 @@
 #include "RegisterMsg.h"
 #include "ResultMsg.h"
 
-Logger logger("client", Logger::INFO, Logger::DEBUG);
+static Logger logger("client", Logger::INFO, Logger::DEBUG);
 
 Client::Client(string name) :
         name(std::move(name)) {

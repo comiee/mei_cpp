@@ -8,4 +8,4 @@ PRIVATE
     src
 )
 
-target_link_libraries(communication communal jsoncpp ws2_32.lib)
+target_link_libraries(communication comiee communal jsoncpp ws2_32.lib)
