@@ -78,7 +78,7 @@ Future<string> AsyncClient::receive() const {
     }
 }
 
-Loop &getLoop() {
-    static Loop loop;
+EventLoop &getLoop() {
+    static EventLoop loop;
     return loop;
 }

@@ -19,7 +19,7 @@ void print(const std::vector<T> &v) {
 
 template<typename A, typename B>
 void print(const std::pair<A, B> &v) {
-    print("pair(", v.first, ", ", v.second, ")");
+    std::cout << "pair(" << v.first << ", " << v.second << ")";
 }
 
 template<typename T>

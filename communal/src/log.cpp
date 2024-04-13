@@ -28,10 +28,9 @@ Logger::Logger(const string &name, Level console_level, const string &file_name,
 
 string getTimeString() {
     time_t now = time(nullptr);
-    tm ltm = {0};
-    localtime_s(&ltm, &now);
+    tm *ltm = localtime(&now);
     char date[100];
-    strftime(date, sizeof(date) / sizeof(char), "[%Y-%m-%d %H:%M:%S]", &ltm);
+    strftime(date, sizeof(date) / sizeof(char), "[%Y-%m-%d %H:%M:%S]", ltm);
     return date;
 }
 

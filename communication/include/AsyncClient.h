@@ -1,7 +1,7 @@
 #pragma once
 
 #include "type.h"
-#include "Loop.h"
+#include "EventLoop.h"
 #include <winsock.h>
 
 class AsyncClient {
@@ -23,4 +23,4 @@ private:
     SOCKET sock = INVALID_SOCKET;
 };
 
-Loop &getLoop();
+EventLoop &getLoop();

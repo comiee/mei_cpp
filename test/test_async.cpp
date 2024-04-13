@@ -1,6 +1,5 @@
 #include <thread>
 #include "AsyncClient.h"
-#include "print.h"
 
 Task debug(string s) {
     AsyncClient client("debug");
