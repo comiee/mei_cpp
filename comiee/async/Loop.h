@@ -6,7 +6,7 @@
 #include <list>
 #include "Task.h"
 
-class Loop {
+class [[maybe_unused]] Loop {
 public:
     Loop() = default;
 

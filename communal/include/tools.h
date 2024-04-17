@@ -2,9 +2,12 @@
 
 #include "type.h"
 #include "CustomException.h"
-#include "sstream"
+#include "Generator.h"
+#include <sstream>
 
 string filePath(const string &path, const string &file_name);
+
+Generator<string> stringSplit(const string &s, char sep);
 
 
 // 以下为使用了模板的方法
@@ -36,11 +39,11 @@ string stringFormat(const char *format, Args...args) {
 }
 
 template<typename T, typename ...Args>
-string stringJoin(const string &split, T obj, Args...args) {
+string stringJoin(const string &sep, T obj, Args...args) {
     std::stringstream ss;
     ss << obj;
     if constexpr (sizeof...(args) > 0) {
-        ss << split << stringJoin(split, args...);
+        ss << sep << stringJoin(sep, args...);
     }
     return ss.str();
 }

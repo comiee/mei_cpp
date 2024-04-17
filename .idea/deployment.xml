@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="远程主机 (77a45d10-6e35-474b-9e28-c68edebfc0ad)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.jCehw33boq" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-wsl" />
+            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/include/json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/src/lib_json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-wsl" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remote" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remote" />
+            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/include/json" />
+            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/src/lib_json" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

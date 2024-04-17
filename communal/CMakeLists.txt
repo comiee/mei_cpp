@@ -7,3 +7,5 @@ PUBLIC
 PRIVATE
     src
 )
+
+target_link_libraries(communal comiee)

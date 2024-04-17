@@ -16,6 +16,9 @@ public:
         }
 
         value_ptr &operator++() {
+            if (handle.done()) {
+                throw CustomException("生成器已停止");
+            }
             handle.resume();
             return *this;
         }
@@ -64,7 +67,11 @@ public:
     }
 
     Y get() {
-        return handle.promise().get_yield_value();
+        return *begin();
+    }
+
+    Y next() {
+        return *++begin();
     }
 
 private:

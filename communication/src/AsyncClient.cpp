@@ -2,6 +2,7 @@
 #include "AsyncClient.h"
 #include "log.h"
 #include "CustomException.h"
+#include "tools.h"
 
 
 static Logger logger("asyncClient", Logger::INFO, Logger::DEBUG);
@@ -20,15 +21,43 @@ AsyncClient::AsyncClient(string cmd) :
     EXEC(WSAStartup(MAKEWORD(1, 1), &wsa_data)); // TODO 这么做可能有问题
 }
 
-Future<string> AsyncClient::send(const string &message) const {
-    if (sock == INVALID_SOCKET) {
-        logger.error("异步客户端%s发生错误：在调用send之前没有调用connectSock", cmd.c_str());
+string AsyncClient::messageEncode(const MessageType &obj) {
+    PRINT_FUN();
+    PRINT_FUN(std::holds_alternative<const char *>(obj));
+    if (std::holds_alternative<const char *>(obj)) {
+        return "str:" + string(std::get<const char *>(obj));
+    } else if (std::holds_alternative<string>(obj)) {
+        return "str:" + std::get<string>(obj);
+    } else if (std::holds_alternative<Json::Value>(obj)) {
+        return "json:" + JsonTool::dump(std::get<Json::Value>(obj));
+    } else {
+        throw MessageException("编码消息时出错：不支持的类型");
     }
+}
+
+AsyncClient::MessageType AsyncClient::messageDecode(const string &message) {
+    auto it = stringSplit(message, ':');
+    string type = it.next();
+    string val = it.next();
+    if (type == "str") {
+        return val;
+    } else if (type == "json") {
+        return JsonTool::parse(val);
+    } else {
+        throw MessageException("解码消息时出错：不支持的类型");
+    }
+}
+
+Future<AsyncClient::MessageType> AsyncClient::send(MessageType obj) {
+    if (sock == INVALID_SOCKET) {
+        logger.error("异步客户端%s发生错误：未与服务器建立连接，请检查是否漏调用了connectSock", cmd.c_str());
+    }
+    string message = messageEncode(obj);
     sendMsg(sock, message);
     logger.debug("异步客户端%s向服务器发送：%s", cmd.c_str(), message.c_str());
     WAIT(result, receive())
-    logger.debug("异步客户端%s收到服务器响应：%s", cmd.c_str(), message.c_str());
-    co_return result;
+    logger.debug("异步客户端%s收到服务器响应：%s", cmd.c_str(), result.c_str());
+    co_return messageDecode(result);
 }
 
 void AsyncClient::close() const {
@@ -56,8 +85,7 @@ Future<void> AsyncClient::connectSock() {
     int iMode = 1;
     EXEC(ioctlsocket(sock, FIONBIO, (u_long FAR *)&iMode));
 
-    sendMsg(sock, cmd);
-    WAIT(receive())
+    WAIT(send(cmd))
 
     logger.debug("异步客户端%s与服务器建立连接", cmd.c_str());
 }
