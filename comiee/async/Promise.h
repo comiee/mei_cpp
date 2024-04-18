@@ -3,7 +3,7 @@
 
 #include <coroutine>
 
-template<typename Y, typename R, typename I=std::suspend_never>
+template<typename Y, typename R, typename I>
 class Promise {
 public:
     std::suspend_always yield_value(Y v) {

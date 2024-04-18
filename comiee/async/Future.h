@@ -2,56 +2,10 @@
 #define FUTURE_H
 
 #include <ctime>
-#include "Promise.h"
+#include "Coroutine.h"
 
 template<typename R>
-class Future {
-public:
-    using promise_type = Promise<void, R, std::suspend_always>;
-
-    using handle_type = std::coroutine_handle<promise_type>;
-
-    Future(handle_type handle) : handle(handle) {
-    }
-
-    Future(const Future &co) = default;
-
-    Future(Future &&co) noexcept: handle(co.handle) {
-        co.handle = nullptr;
-    }
-
-    ~Future() {
-        if (handle && handle.done()) {
-            handle.destroy();
-        }
-    }
-
-    Future &operator=(const Future &) = default;
-
-    Future &operator=(Future &&co) noexcept {
-        handle = co.handle;
-        co.handle = nullptr;
-        return *this;
-    }
-
-    bool operator==(const Future &other) const {
-        return handle == other.handle;
-    }
-
-    [[nodiscard]] bool done() const {
-        return handle.done();
-    }
-
-    void resume() const {
-        handle.resume();
-    }
-
-    [[nodiscard]] auto promise() const {
-        return handle.promise();
-    }
-
-private:
-    handle_type handle;
+class Future : public Coroutine<void, R, std::suspend_always> {
 };
 
 #define CONCAT(x, y) x##y
