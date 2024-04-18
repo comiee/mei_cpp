@@ -7,7 +7,7 @@
 
 string filePath(const string &path, const string &file_name);
 
-Generator<string> stringSplit(const string &s, char sep);
+Generator<string> stringSplit(const string &s, char sep, int max_times = -1);
 
 
 // 以下为使用了模板的方法

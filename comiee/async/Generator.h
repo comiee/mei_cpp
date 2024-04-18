@@ -2,6 +2,7 @@
 #define GENERATOR_H
 
 #include "Promise.h"
+#include <vector>
 
 template<typename Y>
 class Generator {
@@ -9,7 +10,7 @@ public:
     using promise_type = Promise<Y, void>;
     using handle_type = std::coroutine_handle<promise_type>;
 
-    class value_ptr {
+    class value_ptr : public std::iterator<std::forward_iterator_tag, Y> {
     public:
         value_ptr(handle_type handle) : handle(handle) {
 
@@ -72,6 +73,18 @@ public:
 
     Y next() {
         return *++begin();
+    }
+
+    bool empty() {
+        return handle.done();
+    }
+
+    std::vector<Y> toVector() { // 不可以用vector<Y>{begin(),end()}，vector的构造函数中会多次遍历迭代器
+        std::vector<Y> res;
+        for (const Y &x: *this) {
+            res.push_back(x);
+        }
+        return res;
     }
 
 private:

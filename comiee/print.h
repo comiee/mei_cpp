@@ -5,11 +5,13 @@
 #include <vector>
 
 
+void printRepr(const std::string &v);
+
 template<typename T>
 void print(const std::vector<T> &v) {
     std::cout << "vector(";
     for (const T &x: v) {
-        std::cout << x;
+        printRepr(x);
         if (&x != &*v.rbegin()) {
             std::cout << ", ";
         }

@@ -8,12 +8,13 @@ string filePath(const string &path, const string &file_name) {
     return path + "/" + file_name;
 }
 
-Generator<string> stringSplit(const string &s, char sep) {
+Generator<string> stringSplit(const string &s, char sep, int max_times) {
     string res;
     for (char c: s) {
-        if (c == sep) {
+        if (max_times != 0 && c == sep) {
             co_yield res;
             res.clear();
+            --max_times;
         } else {
             res += c;
         }
