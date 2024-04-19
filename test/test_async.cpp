@@ -1,5 +1,8 @@
 #include <thread>
+#include <cassert>
 #include "AsyncClient.h"
+
+std::vector<string> result;
 
 Task debug(string s) {
     AsyncClient client("debug");
@@ -9,6 +12,7 @@ Task debug(string s) {
     WAIT(res, client.send(s))
     PRINT_FUN(s);
     println(std::get<string>(res), getLoop().size());
+    result.push_back(s);
 }
 
 Task h_pic() {
@@ -28,4 +32,7 @@ void testAsyncMain() {
     getLoop().add(h_pic());
     println(getLoop().size());
     loop_thread.join();
+    assert(result[0] == "1");
+    assert(result[1] == "2");
+    assert(result[2] == "3");
 }

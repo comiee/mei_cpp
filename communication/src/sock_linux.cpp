@@ -16,8 +16,9 @@ void closeSocket(SOCKET sock) {
 }
 
 void setNotBlock(SOCKET sock) {
-    THROW_IF(fcntl(sock, F_GETFL, 0) == -1,
-             SocketException("设置非阻塞模式失败"));
+    int flags = fcntl(sock, F_GETFL);
+    flags |= O_NONBLOCK;
+    fcntl(sock, F_SETFL, flags);
 }
 
 #endif
