@@ -28,6 +28,10 @@ public:
         Generator generator;
     };
 
+    Generator(Coroutine<Y, void, std::suspend_never>::handle_type handle)
+            : Coroutine<Y, void, std::suspend_never>(handle) {
+    }
+
     value_ptr begin() {
         return *this;
     }
@@ -41,7 +45,9 @@ public:
     }
 
     Y next() {
-        return *++begin();
+        Y temp = get();
+        this->resume();
+        return temp;
     }
 
     bool empty() {

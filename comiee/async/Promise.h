@@ -2,6 +2,7 @@
 #define PROMISE_H
 
 #include <coroutine>
+#include <iostream>
 
 template<typename Y, typename R, typename I>
 class Promise {
@@ -28,6 +29,7 @@ public:
     }
 
     void unhandled_exception() {
+        std::cerr << "协程中出现了未捕获的异常" << std::endl;
     }
 
     Y get_yield_value() {
@@ -67,6 +69,7 @@ public:
     }
 
     void unhandled_exception() {
+        std::cerr << "协程中出现了未捕获的异常" << std::endl;
     }
 
     Y get_yield_value() {
@@ -97,6 +100,7 @@ public:
     }
 
     void unhandled_exception() {
+        std::cerr << "协程中出现了未捕获的异常" << std::endl;
     }
 
     R get_return_value() {
@@ -126,6 +130,7 @@ public:
     }
 
     void unhandled_exception() {
+        std::cerr << "协程中出现了未捕获的异常" << std::endl;
     }
 };
 

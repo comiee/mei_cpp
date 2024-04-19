@@ -6,6 +6,10 @@
 
 template<typename R>
 class Future : public Coroutine<void, R, std::suspend_always> {
+public:
+    Future(Coroutine<void, R, std::suspend_always>::handle_type handle)
+            : Coroutine<void, R, std::suspend_always>(handle) {
+    }
 };
 
 #define CONCAT(x, y) x##y

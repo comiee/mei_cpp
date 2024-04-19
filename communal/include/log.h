@@ -1,6 +1,7 @@
 #pragma once
 
 #include "type.h"
+#include "tools.h"
 
 #ifdef ERROR
 #undef ERROR
@@ -47,7 +48,7 @@ public:
     }
 
 private:
-    void doLog(Level level, const char *str);
+    void doLog(Level level, const string &str);
 
     string name;
     Logger::Level console_level;
@@ -59,8 +60,6 @@ private:
 
     template<typename ...Args>
     void _log(Level level, const string &format, Args...args) {
-        char buf[1000];
-        snprintf(buf, sizeof(buf) / sizeof(char), format.c_str(), args...);
-        doLog(level, buf);
+        doLog(level, stringFormat(format, args...));
     }
 };

@@ -2,7 +2,7 @@
 
 #include "type.h"
 #include "json/json.h"
-#include <winsock.h>
+#include "sock.h"
 
 class Client {
 public:

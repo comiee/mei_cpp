@@ -6,24 +6,13 @@
 
 
 static Logger logger("asyncClient", Logger::INFO, Logger::DEBUG);
-#define EXEC(fn)        \
-do {                    \
-    auto ret = fn;      \
-    if (ret) {         \
-        logger.error("异步客户端执行出错，函数：%s， 行号：%d，返回值：%d", __FUNCTION__, __LINE__, ret); \
-    }                   \
-} while(0)
-
 
 AsyncClient::AsyncClient(string cmd) :
         cmd(std::move(cmd)) {
-    WSADATA wsa_data;
-    EXEC(WSAStartup(MAKEWORD(1, 1), &wsa_data)); // TODO 这么做可能有问题
+    wsaInit();
 }
 
 string AsyncClient::messageEncode(const MessageType &obj) {
-    PRINT_FUN();
-    PRINT_FUN(std::holds_alternative<const char *>(obj));
     if (std::holds_alternative<const char *>(obj)) {
         return "str:" + string(std::get<const char *>(obj));
     } else if (std::holds_alternative<string>(obj)) {
@@ -36,7 +25,7 @@ string AsyncClient::messageEncode(const MessageType &obj) {
 }
 
 AsyncClient::MessageType AsyncClient::messageDecode(const string &message) {
-    auto it = stringSplit(message, ':');
+    auto it = stringSplit(message, ':', 1);
     string type = it.next();
     string val = it.next();
     if (type == "str") {
@@ -62,9 +51,9 @@ Future<AsyncClient::MessageType> AsyncClient::send(MessageType obj) {
 
 void AsyncClient::close() const {
     if (sock != INVALID_SOCKET) {
-        closesocket(sock);
+        closeSocket(sock);
     }
-    WSACleanup(); // TODO 这么做可能有问题
+    wsaClear(); // TODO 这么做可能有问题
 }
 
 AsyncClient::~AsyncClient() {
@@ -82,8 +71,7 @@ Future<void> AsyncClient::connectSock() {
     }
 
     // 设置sock为非阻塞模式
-    int iMode = 1;
-    EXEC(ioctlsocket(sock, FIONBIO, (u_long FAR *)&iMode));
+    setNotBlock(sock);
 
     WAIT(send(cmd))
 

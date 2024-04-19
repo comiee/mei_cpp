@@ -9,11 +9,7 @@ static Logger logger("client", Logger::INFO, Logger::DEBUG);
 
 Client::Client(string name) :
         name(std::move(name)) {
-    WSADATA wsa_data;
-    int ret = WSAStartup(MAKEWORD(1, 1), &wsa_data);
-    if (ret != 0) {
-        logger.error("初始化socket失败：%d", ret);
-    }
+    wsaInit();
 }
 
 string Client::getName() {
@@ -71,12 +67,12 @@ void Client::listenServer() {
 
 void Client::close() const {
     if (sender != INVALID_SOCKET) {
-        closesocket(sender);
+        closeSocket(sender);
     }
     if (receiver != INVALID_SOCKET) {
-        closesocket(receiver);
+        closeSocket(receiver);
     }
-    WSACleanup();
+    wsaClear();
 }
 
 Client::~Client() {

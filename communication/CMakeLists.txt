@@ -8,4 +8,11 @@ PRIVATE
     src
 )
 
-target_link_libraries(communication comiee communal jsoncpp ws2_32.lib)
+target_link_libraries(communication comiee communal jsoncpp)
+
+if(WIN32)
+    # 链接 Windows 平台的库文件
+    target_link_libraries(communication ws2_32.lib)
+elseif(UNIX)
+    # 链接 Linux 平台的库文件
+endif()

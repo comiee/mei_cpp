@@ -1,7 +1,7 @@
 #pragma once
 
 #include "type.h"
-#include <winsock.h>
+#include "sock.h"
 
 static const char *HOST = "192.168.1.108";
 static const ushort PORT = 9999;

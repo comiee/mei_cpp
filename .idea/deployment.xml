@@ -8,16 +8,8 @@
             <mapping deploy="/tmp/tmp.jCehw33boq" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-wsl" />
-            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/include/json" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
-            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/src/lib_json" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-wsl" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remote" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-remote" />
-            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/include/json" />
-            <excludedPath local="true" path="$PROJECT_DIR$/jsoncpp/src/lib_json" />
           </excludedPaths>
         </serverdata>
       </paths>

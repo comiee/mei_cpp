@@ -29,10 +29,11 @@ T stringTo(const std::stringstream::__string_type &s) {
 }
 
 template<typename ...Args>
-string stringFormat(const char *format, Args...args) {
+string stringFormat(const string &format, Args...args) {
     char buf[1000];
-    int ret = sprintf_s(buf, sizeof(buf) / sizeof(char), format, args...);
-    if (ret < 0) {
+    size_t size = sizeof(buf) / sizeof(char);
+    int ret = snprintf(buf, size, format.c_str(), args...);
+    if (ret >= size) {
         throw BufferNotEnoughException("字符串过长");
     }
     return buf;

@@ -15,12 +15,12 @@ Task h_pic() {
     AsyncClient client("h_pic");
     WAIT(client.connectSock())
     WAIT(res, client.send(JsonTool::createObject("r18", 2)))
-    println(std::get<Json::Value>(res)["data"]);
+    PRINT_FUN(res.index());
+    println("url: ", std::get<Json::Value>(res)["data"]);
+    PRINT_FUN();
 }
 
 void testAsyncMain() {
-    WSADATA wsa_data;
-    WSAStartup(MAKEWORD(1, 1), &wsa_data);
     std::thread loop_thread([]() { getLoop().run(/*true*/); });
     getLoop().add(debug("3"));
     getLoop().add(debug("2"));
@@ -28,5 +28,4 @@ void testAsyncMain() {
     getLoop().add(h_pic());
     println(getLoop().size());
     loop_thread.join();
-    WSACleanup();
 }
