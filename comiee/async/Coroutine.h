@@ -20,9 +20,10 @@ public:
     }
 
     ~Coroutine() {
-        if (handle && handle.done()) {
-            handle.destroy();
-        }
+        // 这种destroy方法不行，会导致其他副本的done状态不可信，要destroy得想办法使用引用计数的方式
+//        if (handle && handle.done()) {
+//            handle.destroy();
+//        }
     }
 
     Coroutine &operator=(const Coroutine &) = default;

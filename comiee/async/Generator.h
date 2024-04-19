@@ -22,7 +22,7 @@ public:
         }
 
         Y operator*() {
-            return generator.promise().get_yield_value();
+            return generator.get();
         }
 
         Generator generator;
@@ -41,10 +41,10 @@ public:
     }
 
     Y get() {
-        return *begin();
+        return this->promise().get_yield_value();
     }
 
-    Y next() { // 不能用return *++begin();
+    Y next() { // 不能用return *++begin();，否则当没有元素时代码还没有执行完，生成器不会done
         Y temp = get();
         this->resume();
         return temp;
