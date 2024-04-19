@@ -44,7 +44,7 @@ public:
         return *begin();
     }
 
-    Y next() {
+    Y next() { // 不能用return *++begin();
         Y temp = get();
         this->resume();
         return temp;
@@ -52,6 +52,10 @@ public:
 
     bool empty() {
         return this->done();
+    }
+
+    operator bool() {
+        return !empty();
     }
 
     std::vector<Y> toVector() { // 不可以用vector<Y>{begin(),end()}，vector的构造函数中会多次遍历迭代器

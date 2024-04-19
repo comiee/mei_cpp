@@ -1,5 +1,11 @@
 file(GLOB_RECURSE srcs CONFIGURE_DEPENDS ./*.cpp)
 
-add_executable(test ${srcs})
+function(add_exec name)
+    add_executable(${name} ${name}.cpp)
+    target_link_libraries(${name} communication communal jsoncpp)
+endfunction()
 
-target_link_libraries(test communication communal jsoncpp)
+add_exec(test_async test_async)
+add_exec(test_json test_json)
+add_exec(test_message test_message)
+add_exec(test_tools test_tools)

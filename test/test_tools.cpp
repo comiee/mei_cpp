@@ -14,11 +14,17 @@ void testJoin() {
 
 void testSplit() {
     string s = "a,b,c";
-    auto v = stringSplit(s, ',').toVector();
-    println(v.size());
-    for (auto x: v) {
+    auto g = stringSplit(s, ',');
+    for (auto x: g) {
         println(x);
     }
+    println(g.done());
+    g = stringSplit(s, ',');
+    auto h=g;
+    while (g) {
+        println(g.next());
+    }
+    println(g.done(), h.done());
     println(stringSplit(s, ',').toVector());
     println(stringSplit(s, ',', 0).toVector());
     println(stringSplit(s, ',', 1).toVector());
@@ -27,4 +33,9 @@ void testSplit() {
 void testToolsMain() {
     testJoin();
     testSplit();
+}
+
+int main() {
+    testToolsMain();
+    return 0;
 }

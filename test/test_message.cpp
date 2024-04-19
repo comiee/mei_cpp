@@ -21,6 +21,7 @@ private:
     MESSAGE_INSTANCE(TestMsg, "test")
 };
 
-void testMessageMain() {
+int main() {
     Receiver::parse(TestMsg::build("abc"));
+    return 0;
 }

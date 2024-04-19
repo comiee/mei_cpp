@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void testJsonMain() {
+int main() {
     Json::Value s = "hi";
     cout << Json::writeString(Json::StreamWriterBuilder(), s) << endl;
 
@@ -30,5 +30,6 @@ void testJsonMain() {
 
     auto i = JsonTool::toArray(g, g + 3);
     cout << JsonTool::dump(i) << endl;
-}
 
+    return 0;
+}

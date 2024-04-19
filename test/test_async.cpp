@@ -24,7 +24,7 @@ Task h_pic() {
     println("url: ", std::get<Json::Value>(res)["data"]);
 }
 
-void testAsyncMain() {
+int main() {
     std::thread loop_thread([]() { getLoop().run(/*true*/); });
     getLoop().add(debug("3"));
     getLoop().add(debug("2"));
@@ -35,4 +35,5 @@ void testAsyncMain() {
     assert(result[0] == "1");
     assert(result[1] == "2");
     assert(result[2] == "3");
+    return 0;
 }
