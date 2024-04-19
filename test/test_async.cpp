@@ -1,17 +1,19 @@
+#include "AsyncClient.h"
+#include "log.h"
 #include <thread>
 #include <cassert>
-#include "AsyncClient.h"
 
+Logger logger("test_async", Logger::DEBUG);
 std::vector<string> result;
 
 Task debug(string s) {
     AsyncClient client("debug");
-    PRINT_FUN(s);
+    logger.debug("line:%d, str:%s", __LINE__, s.c_str());
     WAIT(client.connectSock())
-    PRINT_FUN(s);
+    logger.debug("line:%d, str:%s", __LINE__, s.c_str());
     WAIT(res, client.send(s))
-    PRINT_FUN(s);
-    println(std::get<string>(res), getLoop().size());
+    logger.debug("line:%d, str:%s, res:%s, remain:%d",
+                 __LINE__, s.c_str(), std::get<string>(res).c_str(), getLoop().size());
     result.push_back(s);
 }
 
@@ -19,9 +21,7 @@ Task h_pic() {
     AsyncClient client("h_pic");
     WAIT(client.connectSock())
     WAIT(res, client.send(JsonTool::createObject("r18", 2)))
-    PRINT_FUN(res.index());
     println("url: ", std::get<Json::Value>(res)["data"]);
-    PRINT_FUN();
 }
 
 void testAsyncMain() {
