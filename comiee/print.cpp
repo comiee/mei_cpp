@@ -1,5 +1,6 @@
 #include "print.h"
 
-void printRepr(const std::string &v) {
-    std::cout << "\"" << v << "\"";
+template<>
+void printRepr<std::string>(std::string x) {
+    std::cout << "\"" << x << "\"";
 }

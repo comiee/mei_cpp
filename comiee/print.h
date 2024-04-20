@@ -4,8 +4,13 @@
 #include <iostream>
 #include <vector>
 
+template<typename T>
+void printRepr(T x) {
+    std::cout << x;
+}
 
-void printRepr(const std::string &v);
+template<>
+void printRepr<std::string>(std::string x);
 
 template<typename T>
 void print(const std::vector<T> &v) {

@@ -67,4 +67,9 @@ public:
     }
 };
 
+#define YIELD_FROM(ge) \
+for(auto x:ge){        \
+    co_yield x;        \
+}
+
 #endif //GENERATOR_H
