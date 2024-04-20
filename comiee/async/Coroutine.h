@@ -1,7 +1,9 @@
 #ifndef COROUTINE_H
 #define COROUTINE_H
 
+#include <cassert>
 #include "Promise.h"
+#include "memory"
 
 template<typename Y, typename R, typename I>
 class Coroutine {
@@ -10,20 +12,32 @@ public:
 
     using handle_type = std::coroutine_handle<promise_type>;
 
+    class MemoryHelper {
+    public:
+        MemoryHelper(handle_type handle) : handle(handle) {
+        }
+
+        ~MemoryHelper() {
+            assert(handle);
+            handle.destroy();
+        }
+
+    private:
+        handle_type handle;
+    };
+
     Coroutine(handle_type handle) : handle(handle) {
+        helper = std::make_shared<MemoryHelper>(handle);
     }
 
     Coroutine(const Coroutine &co) = default;
 
-    Coroutine(Coroutine &&co) noexcept: handle(co.handle) {
+    Coroutine(Coroutine &&co) noexcept: handle(co.handle), helper(co.helper) {
         co.handle = nullptr;
+        co.helper = nullptr;
     }
 
     ~Coroutine() {
-        // 这种destroy方法不行，会导致其他副本的done状态不可信，要destroy得想办法使用引用计数的方式
-//        if (handle && handle.done()) {
-//            handle.destroy();
-//        }
     }
 
     Coroutine &operator=(const Coroutine &) = default;
@@ -31,6 +45,8 @@ public:
     Coroutine &operator=(Coroutine &&co) noexcept {
         handle = co.handle;
         co.handle = nullptr;
+        helper = co.helper;
+        co.helper = nullptr;
         return *this;
     }
 
@@ -56,6 +72,7 @@ public:
 
 private:
     handle_type handle;
+    std::shared_ptr<MemoryHelper> helper;
 };
 
 #endif //COROUTINE_H

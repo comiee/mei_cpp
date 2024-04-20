@@ -12,7 +12,7 @@ void sendEx(SOCKET socket, const string &s) {
 }
 
 string recvEx(SOCKET socket, int len) {
-    std::unique_ptr<char> buf(new char[len + 1]{0});
+    std::unique_ptr<char[]> buf = std::make_unique<char[]>(len + 1);
     if (recv(socket, buf.get(), len, 0) == SOCKET_ERROR) {
         throw SocketException("接收失败：" + toString(len));
     }
@@ -30,6 +30,6 @@ void sendMsg(SOCKET socket, const string &msg) {
 string recvMsg(SOCKET socket) {
     int n = stringTo<int>(recvEx(socket, 5));
     int len = stringTo<int>(recvEx(socket, n));
-    string res= recvEx(socket, len);
+    string res = recvEx(socket, len);
     return res;
 }
