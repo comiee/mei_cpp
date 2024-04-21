@@ -1,6 +1,7 @@
 #include "tools.h"
 #include "print.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -19,12 +20,14 @@ void testSplit() {
         println(x);
     }
     println(g.done());
+    assert(g.done() == true);
     g = stringSplit(s, ',');
-    auto h=g;
+    auto h = g;
     while (g) {
         println(g.next());
     }
     println(g.done(), h.done());
+    assert(g.done() == true && h.done() == true);
     println(stringSplit(s, ',').toVector());
     println(stringSplit(s, ',', 0).toVector());
     println(stringSplit(s, ',', 1).toVector());

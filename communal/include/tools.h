@@ -12,7 +12,6 @@ Generator<string> stringSplit(const string &s, char sep, int max_times = -1);
 
 // 以下为使用了模板的方法
 
-
 template<typename T>
 string toString(T x) {
     std::stringstream ss;

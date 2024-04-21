@@ -6,5 +6,6 @@
 
 class Task : public Future<void> {
 public:
-    Task(handle_type handle);
+    Task(auto handle) : Future<void>(handle) {
+    }
 };

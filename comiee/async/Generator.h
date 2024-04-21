@@ -27,8 +27,7 @@ public:
         Generator generator;
     };
 
-    Generator(Coroutine<Y, void, std::suspend_never>::handle_type handle)
-            : Coroutine<Y, void, std::suspend_never>(handle) {
+    Generator(auto handle) : Coroutine<Y, void, std::suspend_never>(handle) {
     }
 
     value_ptr begin() {
