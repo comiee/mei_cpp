@@ -1,5 +1,4 @@
-#ifndef FUTURE_H
-#define FUTURE_H
+#pragma once
 
 #include <ctime>
 #include "Coroutine.h"
@@ -37,5 +36,3 @@ R run(const Future<R> &fu) {
 }
 
 Future<void> asleep(time_t t);
-
-#endif //FUTURE_H

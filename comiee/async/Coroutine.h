@@ -1,5 +1,4 @@
-#ifndef COROUTINE_H
-#define COROUTINE_H
+#pragma once
 
 #include <cassert>
 #include "Promise.h"
@@ -74,5 +73,3 @@ private:
     handle_type handle;
     std::shared_ptr<MemoryHelper> helper;
 };
-
-#endif //COROUTINE_H

@@ -1,5 +1,4 @@
-#ifndef TASK_H
-#define TASK_H
+#pragma once
 
 #include <queue>
 #include <functional>
@@ -9,6 +8,3 @@ class Task : public Future<void> {
 public:
     Task(handle_type handle);
 };
-
-
-#endif //TASK_H

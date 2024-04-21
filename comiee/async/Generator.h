@@ -1,5 +1,4 @@
-#ifndef GENERATOR_H
-#define GENERATOR_H
+#pragma once
 
 #include "Coroutine.h"
 #include <vector>
@@ -71,5 +70,3 @@ public:
 for(auto x:ge){        \
     co_yield x;        \
 }
-
-#endif //GENERATOR_H

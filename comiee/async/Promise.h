@@ -1,5 +1,4 @@
-#ifndef PROMISE_H
-#define PROMISE_H
+#pragma once
 
 #include <coroutine>
 #include <iostream>
@@ -133,5 +132,3 @@ public:
         std::cerr << "协程中出现了未捕获的异常" << std::endl;
     }
 };
-
-#endif //PROMISE_H

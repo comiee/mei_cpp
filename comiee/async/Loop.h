@@ -1,6 +1,4 @@
-#ifndef TEST_ASYNC_LOOP_H
-#define TEST_ASYNC_LOOP_H
-
+#pragma once
 
 #include <initializer_list>
 #include <list>
@@ -21,6 +19,3 @@ public:
 private:
     std::list<Task> task_list;
 };
-
-
-#endif //TEST_ASYNC_LOOP_H

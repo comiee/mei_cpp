@@ -1,5 +1,4 @@
-#ifndef TEST23_COMIEE_H
-#define TEST23_COMIEE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -48,5 +47,3 @@ void println(Args...args) {
 }
 
 #define PRINT_FUN(...) println(__FUNCTION__, __LINE__, ##__VA_ARGS__)
-
-#endif //TEST23_COMIEE_H
