@@ -8,7 +8,7 @@ Generator<int> f(){
 }
 
 Generator<int> g(){
-    YIELD_FROM(f());
+    YIELD_FROM(f())
 }
 
 int main() {

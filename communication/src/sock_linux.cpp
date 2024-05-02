@@ -1,7 +1,6 @@
 #if __linux__
 
 #include "sock.h"
-#include "CustomException.h"
 #include <unistd.h>
 #include <fcntl.h>
 

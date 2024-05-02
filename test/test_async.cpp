@@ -30,7 +30,7 @@ int main() {
     getLoop().add(debug("2"));
     getLoop().add(debug("1"));
     getLoop().add(h_pic());
-    println(getLoop().size());
+    PRINT_FUN(getLoop().size());
     loop_thread.join();
     assert(result[0] == "1");
     assert(result[1] == "2");
