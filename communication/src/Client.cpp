@@ -17,6 +17,8 @@ string Client::getName() {
 }
 
 Json::Value Client::send(const string &message) {
+    static std::mutex mtx;
+    std::lock_guard<std::mutex> lock(mtx);
     for (uint i = 0; i < RECONNECT_COUNT; i++) {
         try {
             if (sender == INVALID_SOCKET) {
@@ -80,6 +82,8 @@ Client::~Client() {
 }
 
 SOCKET Client::registerClient(const string &client_type) {
+    static std::mutex mtx;
+    std::lock_guard<std::mutex> lock(mtx);
     logger.info("客户端[%s]正在向服务器注册%s", name.c_str(), client_type.c_str());
     SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     sockaddr_in address = {0};

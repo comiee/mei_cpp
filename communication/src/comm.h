@@ -3,7 +3,7 @@
 #include "type.h"
 #include "sock.h"
 
-static const char *HOST = "172.17.176.1";
+static const char *HOST = "192.168.1.105";
 static const ushort PORT = 9999;
 static const ushort ASYNC_PORT = 9998;
 

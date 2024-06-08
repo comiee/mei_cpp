@@ -20,8 +20,6 @@ string recvEx(SOCKET socket, int len) {
 }
 
 void sendMsg(SOCKET socket, const string &msg) {
-    static std::mutex send_mtx;
-    std::lock_guard<std::mutex> lock(send_mtx);
     string len = toString(msg.length());
     int n = static_cast<int>(len.length());
     sendEx(socket, stringFormat("%05d", n));
@@ -30,8 +28,6 @@ void sendMsg(SOCKET socket, const string &msg) {
 }
 
 string recvMsg(SOCKET socket) {
-    static std::mutex recv_mtx;
-    std::lock_guard<std::mutex> lock(recv_mtx);
     int n = stringTo<int>(recvEx(socket, 5));
     int len = stringTo<int>(recvEx(socket, n));
     string res = recvEx(socket, len);
